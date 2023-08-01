@@ -1,0 +1,5 @@
+LCROSENDO-PROJECTS-TERRAFORM-AWS
+
+7-31-2023 
+Added to GitHub and GitLab
+S3 Bucket
