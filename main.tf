@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket         = "lcrosendo-projects-s3-backend"
-    key            = "./backend/state"
+    key            = "terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "lcrosendo-projects-dynamodb-backend"
   }

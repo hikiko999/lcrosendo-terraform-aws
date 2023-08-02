@@ -9,9 +9,9 @@ provider "aws" {
 
 resource "aws_s3_bucket" "lcrosendo-projects-s3-backend" {
   bucket = "lcrosendo-projects-s3-backend"
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = false
+  # }
 }
 
 resource "aws_s3_bucket_versioning" "lcrosendo-projects-s3-backend-VERSIONING" {
@@ -33,8 +33,8 @@ resource "aws_dynamodb_table" "lcrosendo-projects-dynamodb-backend" {
     type = "S"
   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = false
+  # }
 
 }
