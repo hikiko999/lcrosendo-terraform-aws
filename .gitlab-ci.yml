@@ -11,7 +11,7 @@ Build:
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
     - terraform init
     - terraform plan -out=tfplan
-    - terraform apply tfplan -auto-approve
+    - terraform apply tfplan
     - terraform output > outputs.txt
   artifacts:
     paths:
