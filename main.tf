@@ -2,15 +2,19 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "~> 5.10"
     }
+  }
+  backend "s3" {
+    bucket         = "lcrosendo-projects-s3-backend"
+    key            = "./backend/state"
+    region         = "us-east-1"
+    dynamodb_table = "lcrosendo-projects-dynamodb-backend"
   }
 }
 
-# Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
-
   default_tags {
     tags = {
       Environment = "LCROSENDO-P-TERRAFORM-AWS"
@@ -18,12 +22,20 @@ provider "aws" {
   }
 }
 
-resource "aws_s3_bucket" "lcrosendo-projects-s3" {
-  bucket = "lcrosendo-projects-s3"
+module "backend" {
+  source = "./backend"
 }
 
-resource "aws_s3_bucket_versioning" "lcrosendo-projects-s3-VERSIONING" {
-  bucket = aws_s3_bucket.lcrosendo-projects-s3.id
+# Configure the AWS Provider
+
+# Configured Backend-State Bucket
+
+resource "aws_s3_bucket" "lcrosendo-projects-s3-main" {
+  bucket = "lcrosendo-projects-s3-main"
+}
+
+resource "aws_s3_bucket_versioning" "lcrosendo-projects-s3-main-VERSIONING" {
+  bucket = aws_s3_bucket.lcrosendo-projects-s3-main.id
   versioning_configuration {
     status = "Enabled"
   }
